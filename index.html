@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Gestion des locations</title>
+  <meta charset="UTF-8" />
+  <title>Maisons - Gestion des locations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
   <style>
-  :root {
-    --primary: #4f46e5; /* violet */
-    --background: #f9fafb;
-  }
-  body { background-color: var(--background); }
-  .title { color: var(--primary); }
-</style>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    :root { --primary: #4f46e5; --background: #f9fafb; }
+    body { background-color: var(--background); }
+    .title { color: var(--primary); }
+  </style>
 </head>
 <body>
   <section class="section">
     <h1 class="title">Maisons de location</h1>
+
     <nav class="tabs">
-  <ul>
-    <li class="is-active"><a href="index.html">Maisons</a></li>
-    <li><a href="maintenance.html">Maintenance</a></li>
-  </ul>
-</nav>
-    <img src="logo.png" alt="Logo" width="80" style="margin-bottom: 1rem;">
-    <div id="table-container" class="table-container">
+      <ul>
+        <li class="is-active"><a href="index.html">Maisons</a></li>
+        <li><a href="maintenance.html">Maintenance</a></li>
+        <li><a href="paiements.html">Paiements</a></li>
+        <li><a href="incidents.html">Incidents</a></li>
+      </ul>
+    </nav>
+
+    <div class="table-container">
       <table class="table is-striped is-fullwidth">
         <thead>
           <tr>
@@ -32,7 +33,6 @@
             <th>Loyer</th>
             <th>Locataire</th>
             <th>Téléphone</th>
-            <th>Paiement</th>
             <th>Prochain paiement</th>
             <th>Notes</th>
           </tr>
@@ -41,6 +41,7 @@
       </table>
     </div>
   </section>
+
   <script src="script.js"></script>
 </body>
 </html>
