@@ -1,9 +1,3 @@
-<nav class="tabs">
-  <ul>
-  <li><a href="maintenance.html">Maintenance</a></li>
-    <li class="is-active"><a href="index.html">Maisons</a></li>
-  </ul>
-</nav>
 // Remplace par ton ID de feuille Google Sheets
 const SHEET_ID = 'TON_ID_ICI';
 const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?sheet=Maintenance&tqx=out:csv`;
