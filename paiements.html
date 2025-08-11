@@ -2,29 +2,59 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Gestion des locations</title>
+  <title>Paiements - Gestion des locations</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <style>
+    :root { --primary: #4f46e5; --background: #f9fafb; }
+    body { background-color: var(--background); }
+    .title { color: var(--primary); }
+  </style>
 </head>
 <body>
-  <section class="section">
-    <h1 class="title">Maisons de location</h1>
-    <div id="table-container" class="table-container">
-      <table class="table is-striped is-fullwidth">
-        <thead>
-          <tr>
-            <th>Maison</th>
-            <th>Adresse</th>
-            <th>Loyer</th>
-            <th>Locataire</th>
-            <th>Téléphone</th>
-            <th>Prochain paiement</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody id="data-body"></tbody>
-      </table>
+<section class="section">
+  <h1 class="title">Paiements des locataires</h1>
+
+  <nav class="tabs">
+    <ul>
+      <li><a href="index.html">Maisons</a></li>
+      <li><a href="maintenance.html">Maintenance</a></li>
+      <li class="is-active"><a href="paiements.html">Paiements</a></li>
+      <li><a href="incidents.html">Incidents</a></li>
+    </ul>
+  </nav>
+
+  <!-- Filtre par maison -->
+  <div class="field">
+    <label class="label">Filtrer par maison</label>
+    <div class="control">
+      <div class="select">
+        <select id="filter-maison"></select>
+      </div>
     </div>
-  </section>
-  <script src="script.js"></script>
+  </div>
+
+  <!-- Table -->
+  <div class="table-container">
+    <table class="table is-striped is-fullwidth">
+      <thead>
+        <tr>
+          <th>Maison</th>
+          <th>Locataire</th>
+          <th>Montant</th>
+          <th>Date échéance</th>
+          <th>Statut</th>
+          <th>Jours restants</th>
+        </tr>
+      </thead>
+      <tbody id="data-body"></tbody>
+    </table>
+  </div>
+
+  <button class="button is-primary" onclick="exportPDF()">Exporter PDF</button>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+<script src="paiements.js"></script>
 </body>
 </html>
