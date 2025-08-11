@@ -1,7 +1,6 @@
 // Remplace par ton ID de feuille Google Sheets
 const SHEET_ID = 'TON_ID_ICI';
-const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?sheet=Maison&tqx=out:csv`;
-
+const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?sheet=Maintenance&tqx=out:csv`;
 async function loadSheet() {
   try {
     const res = await fetch(SHEET_URL);
