@@ -5,13 +5,18 @@ const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?sh
 async function loadSheet() {
   const res  = await fetch(SHEET_URL);
   const csv  = await res.text();
-  const rows = csv.split('\n').slice(1); // skip header
+  // retire la ligne d’en-tête
+  const rows = csv.split('\n').slice(1);
   const tbody = document.getElementById('data-body');
   tbody.innerHTML = '';
+
   rows.forEach(row => {
-    const cols = row.split(',').map(c => c.replace(/"/g, ''));
-    const tr   = document.createElement('tr');
-    cols.forEach(c => {
+    // split en tenant compte des virgules à l’intérieur des guillemets
+    const cols = row.match(/(".*?"|[^,]+)/g)?.map(c => c.replace(/"/g, '').trim()) || [];
+    if (cols.length < 7) return; // ligne incomplète
+
+    const tr = document.createElement('tr');
+    cols.slice(0, 7).forEach(c => {
       const td = document.createElement('td');
       td.textContent = c;
       tr.appendChild(td);
