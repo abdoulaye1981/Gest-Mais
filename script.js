@@ -15,6 +15,11 @@ async function loadSheet() {
     const cols = row.match(/(".*?"|[^,]+)/g)?.map(c => c.replace(/"/g, '').trim()) || [];
     if (cols.length < 7) return; // ligne incomplète
 
+// 👇 Lien Drive stylisé ou simple icône
+    const linkCell = driveLink
+      ? `<a href="${driveLink}" target="_blank" class="button is-small is-info">📁 Voir</a>`
+      : '';
+    
     const tr = document.createElement('tr');
     cols.slice(0, 7).forEach(c => {
       const td = document.createElement('td');
