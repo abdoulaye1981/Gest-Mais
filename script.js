@@ -15,24 +15,24 @@ async function loadSheet() {
     const cols = row.match(/(".*?"|[^,]+)/g)?.map(c => c.replace(/"/g, '').trim()) || [];
     if (cols.length < 8) return;                 // on attend 8 colonnes (inclut Drive_Link)
 
-    const [maison, adresse, loyer, locataire, tel, date, notes, driveLink] = cols;
+    const [Maison, Adresse, Loyer, Locataire, Téléphone, Prochain_paiement, Notes, Documents] = cols;
 
     // 3) bouton Drive ou rien si vide
-    const linkCell = driveLink
-      ? `<a href="${driveLink}" target="_blank" class="button is-small is-info">📁 Voir</a>`
+    const linkCell = Documents
+      ? `<a href="${Documents}" target="_blank" class="button is-small is-info">📁 Voir</a>`
       : '';
 
     // 4) injection HTML
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td>${maison}</td>
-      <td>${adresse}</td>
-      <td>${loyer}</td>
-      <td>${locataire}</td>
-      <td>${tel}</td>
-      <td>${date}</td>
-      <td>${notes}</td>
-      <td>${linkCell}</td>
+      <td>${Maison}</td>
+      <td>${Adresse}</td>
+      <td>${Loyer}</td>
+      <td>${Locataire}</td>
+      <td>${Téléphone}</td>
+      <td>${Prochain_paiement}</td>
+      <td>${Notes}</td>
+      <td>${Documents}</td>
     `;
     tbody.appendChild(tr);
   });
