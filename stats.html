@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Statistiques - Gestion des locations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root { --primary: #4f46e5; --background: #f9fafb; }
+    body { background-color: var(--background); }
+    .title { color: var(--primary); }
+  </style>
+</head>
+<body>
+  <section class="section">
+    <h1 class="title">Statistiques des loyers</h1>
+
+    <!-- Navigation -->
+    <nav class="tabs">
+      <ul>
+        <li><a href="index.html">Maisons</a></li>
+        <li><a href="maintenance.html">Maintenance</a></li>
+        <li><a href="paiements.html">Paiements</a></li>
+        <li><a href="incidents.html">Incidents</a></li>
+        <li class="is-active"><a href="stats.html">📊 Stats</a></li>
+      </ul>
+    </nav>
+
+    <!-- Graphique -->
+    <canvas id="myChart" width="400" height="200"></canvas>
+  </section>
+
+  <script>
+    // Remplace par ton ID et le gid de l’onglet Paiements
+    const SHEET_ID   = '1WWq1qR1PWLVQvxboJ7CUvr2MINVUUvsKqNBkEPVSfvk';
+    const GID        = '0'; // <-- remplace par le gid réel de l’onglet Paiements
+    const SHEET_URL  = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?sheet=Paiements&tqx=out:csv&gid=${GID}`;
+
+    async function loadStats() {
+      const res = await fetch(SHEET_URL);
+      const csv = await res.text();
+      const rows = csv.split('\n').slice(1);
+
+      const labels = [];
+      const data   = [];
+
+      rows.forEach(row => {
+        const cols = row.match(/(".*?"|[^,]+)/g)?.map(c => c.replace(/"/g, '').trim()) || [];
+        if (cols.length < 4) return; // [Maison, Locataire, Montant, ...]
+        const [maison, , montantRaw] = cols;
+        const montant = parseFloat(montantRaw) || 0;
+        labels.push(maison);
+        data.push(montant);
+      });
+
+      new Chart(document.getElementById('myChart'), {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Loyer (€)',
+            data,
+            backgroundColor: '#4f46e5'
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+    }
+
+    loadStats();
+  </script>
+</body>
+</html>
