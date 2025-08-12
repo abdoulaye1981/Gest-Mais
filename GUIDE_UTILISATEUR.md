@@ -1,6 +1,6 @@
 
 ## 🔗 Accès rapide
-- **Site web (lecture)** : [https://abdoulaye1981.github.io/gestion-locations/](https://abdoulaye1981.github.io/gestion-locations/)
+- **Site web (lecture)** : [https://abdoulaye1981.github.io/Gest-Mais/](https://abdoulaye1981.github.io/Gest-Mais/)
 - **Feuille Google Sheets (édition)** : [CLIQUE_ICI_POUR_COPIER_LIEN](https://docs.google.com/spreadsheets/d/TON_ID)
 
 ---
