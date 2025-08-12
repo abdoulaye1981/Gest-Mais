@@ -13,6 +13,9 @@
   </style>
 </head>
 <body>
+  <script>
+  if (!localStorage.getItem('auth')) location.href = 'login.html';
+</script>
   <section class="section">
     <h1 class="title">Statistiques des loyers</h1>
 
